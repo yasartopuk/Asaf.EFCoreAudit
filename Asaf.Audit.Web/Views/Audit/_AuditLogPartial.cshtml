@@ -1,0 +1,50 @@
+﻿@model List<AuditEntry>
+
+
+@if (Model == null || !Model.Any())
+{
+    <p>audit log not found</p>
+    return;
+}
+
+@{
+    var badgeClasses = new Dictionary<string, string>
+    {
+        { "Added","success"},
+        { "Modified","warning"},
+        { "Deleted","danger"},
+    };
+}
+
+@foreach (var entry in Model.OrderByDescending(x => x.TimeStamp))
+{
+    <div class="audit-entry">
+        <dl class="row">
+            <dt class="col-sm-3">Timestamp:</dt>
+            <dd class="col-sm-9">@entry.TimeStamp</dd>
+            <dt class="col-sm-3">Action:</dt>
+            <dd class="col-sm-9"> <span class="badge badge-@badgeClasses[entry.Action]">@entry.Action</span></dd>
+            <dt class="col-sm-3">User:</dt>
+            <dd class="col-sm-9">John Doe</dd>
+        </dl>
+        <strong>Changes</strong>
+        <table class="table table-condensed table-bordered table-sm">
+            <tbody>
+                @foreach (var change in entry.AuditChanges)
+                {
+                    <tr>
+                        <td><strong>@change.ColumnName</strong></td>
+                        <td>@(string.IsNullOrEmpty(change.OriginalValueName) ? change.OriginalValue : $"{change.OriginalValue} - {change.OriginalValueName}")</td>
+                        <td>@(string.IsNullOrEmpty(change.NewValueName) ? change.NewValue : $"{change.NewValue} - {change.NewValueName}")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <hr />
+}
+<style>
+    .audit-entry {
+        font-size: 80%;
+    }
+</style>

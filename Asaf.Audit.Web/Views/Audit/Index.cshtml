@@ -1,0 +1,82 @@
+﻿@model List<AuditEntry>  // Görünümün modeli, AuditEntry listesi olacak
+@{
+    ViewData["Title"] = "Audits";
+}
+<h2>Audit Entry List</h2>
+<p>
+    <a asp-action="ClearAudits" class="btn btn-danger">Clear All Audits</a>
+</p>
+
+<table class="table table-condensed table-responsive table-bordered table-sm">
+    <thead>
+        <tr>
+            <th>Detail</th>
+            <th>TableName</th>
+            <th>RecordId</th>
+            <th>Action</th>
+            <th>UserId</th>
+            <th>TimeStamp</th>
+            <th class="d-none">TransactionId</th> <!-- TransactionId sütunu gizleniyor -->
+        </tr>
+    </thead>
+    <tbody>
+
+        @{
+            var index = 0;
+        }
+
+        @foreach (var entry in Model)
+        {
+            index++;
+
+            <tr>
+                <td>
+                    <button class="btn btn-primary" data-toggle="collapse" data-target="#auditDetail_@index">Detail</button>
+                </td>
+                <td>@entry.TableName</td>
+                <td>@entry.RecordId</td>
+                <td>@entry.Action</td>
+                <td>@entry.UserId</td>
+                <td>@entry.TimeStamp</td>
+                <td class="d-none">@entry.TransactionId</td> <!-- TransactionId sütunu gizleniyor -->
+            </tr>
+            <tr id="auditDetail_@index" class="collapse">
+                <td colspan="7">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>ColumnName</th>
+                                <th>Original Value</th>
+                                <th>New Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var change in entry.AuditChanges)
+                            {
+                                <tr>
+                                    <td>@change.ColumnName</td>
+                                    <td>
+                                        @{
+                                            var originalValue = change.OriginalValueName is null
+                                            ? change.OriginalValue
+                                            : $"{change.OriginalValue} - {change.OriginalValueName}";
+                                        }
+                                        @originalValue
+                                    </td>
+                                    <td>
+                                        @{
+                                            var newValue = change.NewValueName is null
+                                            ? change.NewValue
+                                            : $"{change.NewValue} - {change.NewValueName}";
+                                        }
+                                        @newValue
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

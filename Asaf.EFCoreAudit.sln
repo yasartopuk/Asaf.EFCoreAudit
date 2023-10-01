@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Asaf.EFCoreAudit", "Asaf.EFCoreAudit\Asaf.EFCoreAudit.csproj", "{E145196F-5F6C-4554-AC3F-6E5A523362EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Asaf.Audit.Web", "Asaf.Audit.Web\Asaf.Audit.Web.csproj", "{AD8417BA-79B0-4875-A861-021D265AE77B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E145196F-5F6C-4554-AC3F-6E5A523362EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E145196F-5F6C-4554-AC3F-6E5A523362EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E145196F-5F6C-4554-AC3F-6E5A523362EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E145196F-5F6C-4554-AC3F-6E5A523362EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD8417BA-79B0-4875-A861-021D265AE77B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD8417BA-79B0-4875-A861-021D265AE77B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD8417BA-79B0-4875-A861-021D265AE77B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD8417BA-79B0-4875-A861-021D265AE77B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D5DF20CA-A09C-4D08-A807-3AD1AFD62572}
+	EndGlobalSection
+EndGlobal
